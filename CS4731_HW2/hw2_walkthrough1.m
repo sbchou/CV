@@ -11,13 +11,14 @@ subplot(1, 2, 1);
 imshow(img); title('Original Image');
 
 % Convert the image into a binary image by applying a threshold
-%threshold = ??;
+threshold = 0.5;
 
 bw_img = im2bw(img, threshold);
 subplot(1, 2, 2);
 imshow(bw_img); title('Binary Image');
 
 saveas(fh1, 'binary_coins.png');
+
 
 %----------------- 
 % Remove noises in the binary image
@@ -27,7 +28,7 @@ saveas(fh1, 'binary_coins.png');
 fh2 = figure;
 
 % Specify the number of dilations/erosions
-%k = ??;
+k = 10;
 
 processed_img = bwmorph(bw_img, 'dilate', k);
 subplot(1, 2, 1);
@@ -47,7 +48,7 @@ saveas(fh2, 'noise_removal_coins.png');
 fh3 = figure;
 
 % Specify the number of erosions/dilations
-%k = ??;
+k = 10;
 
 processed_img = bwmorph(processed_img, 'erode', k);
 subplot(1, 2, 1);

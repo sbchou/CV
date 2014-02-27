@@ -1,0 +1,19 @@
+README 
+Sophie Chou
+sbc2125
+
+Homework 2
+
+Walkthrough 1
+=============
+No comments; followed given code and comments.
+
+Challenge 1
+===========
+a) Threshhold is a value \in [0, 1]. O.5 Works best.
+
+b) Additional properties:
+Row 7: Area of bounding box of object
+Row 8: Extent which area of object fills its boundingbox
+
+c) Combination criteria + threshholds: we look at roundness, with a tolerance of 0.3

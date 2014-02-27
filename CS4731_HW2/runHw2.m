@@ -20,9 +20,8 @@ orig_imsetting = iptgetpref('ImshowBorder');
 iptsetpref('ImshowBorder', 'tight');
 temp1 = onCleanup(@()iptsetpref('ImshowBorder', orig_imsetting));
 
-fun_handles = {@honesty, @walkthrough1, @walkthrough2...
+fun_handles = {@honesty, @walkthrough1...
     @challenge1a, @challenge1b, @challenge1c1, @challenge1c2,...
-    @challenge2a, @challenge2b, @challenge2c, @challenge2d,...
     @demoMATLABTricks};
 % Call test harness
 runTests(varargin, fun_handles);
@@ -34,7 +33,7 @@ runTests(varargin, fun_handles);
 function honesty()
 % Type your full name and uni (both in string) to state your agreement 
 % to the Code of Academic Integrity.
-signAcademicHonestyPolicy('Peter Parker', 'pp117');
+signAcademicHonestyPolicy('Sophie Chou', 'sbc215');
 
 %--------------------------------------------------------------------------
 % Test for Walkthrough 1: Morphological operations
@@ -51,7 +50,7 @@ hw2_walkthrough1;
 %%
 function challenge1a()
 img_list = {'two_objects', 'many_objects_1', 'many_objects_2'};
-%threshold_list = [???, ???, ???];
+threshold_list = [0.5, 0.5, 0.5];
 
 for i = 1:length(img_list)
     orig_img = imread([img_list{i} '.png']);

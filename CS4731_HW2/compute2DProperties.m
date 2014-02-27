@@ -21,10 +21,6 @@ function [obj_db, out_img] = compute2DProperties(orig_img, labeled_img)
         obj_db(3, i) = y_bar;
        
         %row 5 the orientation 
-        %a_prime = x.^2;
-        %b_prime = 2 * x * y;
-        %c_prime = y^2;
-        
         a = sum((x - x_bar).^2);
         b = 2 * sum((x - x_bar) .* (y - y_bar));
         c = sum((y - y_bar).^2);
@@ -41,6 +37,19 @@ function [obj_db, out_img] = compute2DProperties(orig_img, labeled_img)
         theta2 = theta + pi / 2;
         E_max = a*sin(theta2)^2 - b*sin(theta2)*cos(theta2) + c*cos(theta2)^2;
         obj_db(6, i) = E_min / E_max;
+
+        %additional row 7 for boundingbox area
+        x1 = min(x);
+        x2 = max(x);
+        y1 = min(y);
+        y2 = max(y);
+
+        box_area = (x2 - x1) * (y2 - y1);
+        obj_db(7, i) = box_area;
+
+        %additional row 8 for extent
+        extent = box_area / A;
+        obj_db(8, i) = extent;
         
     end
 
@@ -60,7 +69,7 @@ function [obj_db, out_img] = compute2DProperties(orig_img, labeled_img)
         plot([y_1 y_2], [x_1 x_2]);
     end
 
-    out_img = saveAnnotatedImg(fig); 
+    out_img = saveAnnotatedImg(fig);  
     delete(fig);
 
 end
@@ -85,5 +94,5 @@ function annotated_img = saveAnnotatedImg(fh)
     % has some platform depend issues. we should calling
     % getframe twice in a row and adding a pause afterwards make getframe work
     % as expected. This is just a walkaround. 
-    annotated_img = frame.cdata;
+    annotated_img = frame.cdata; 
 end

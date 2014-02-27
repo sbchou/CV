@@ -1,13 +1,12 @@
 function labeled_img = generateLabeledImage(gray_img, threshold)
     %threshold of 0.5 works best
 
-    img = imread(gray_img);
-    imshow(img); title('Original Image');
+    imshow(gray_img); title('Original Image');
 
     %bw_img = im2bw(img, threshold);
-    bw_img = zeros(size(img));
-    ind = find(img > 255 * threshold);
-    bw_img(ind) = img(ind);
+    bw_img = zeros(size(gray_img));
+    ind = find(gray_img > 255 * threshold);
+    bw_img(ind) = gray_img(ind);
     
     imshow(bw_img); title('BW IMAGE');
 
